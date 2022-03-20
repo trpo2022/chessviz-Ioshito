@@ -1,0 +1,5 @@
+*.txt
+*.o
+*main
+main.c~
+#main.c#
