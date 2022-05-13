@@ -1,5 +1,10 @@
-*.txt
-*.o
-*main
-main.c~
-#main.c#
+obj/src/chessviz/.o
+obj/src/chessviz/.a
+obj/src/chessviz/.d
+
+obj/src/libchessviz/.o
+obj/src/libchessviz/.a
+obj/src/libchessviz/.d
+
+
+bin/chessviz
