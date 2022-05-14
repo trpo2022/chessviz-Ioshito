@@ -29,4 +29,3 @@ CTEST(ctest, write2)
     const int expected = 1;
     ASSERT_EQUAL(expected, result);
 }
-
