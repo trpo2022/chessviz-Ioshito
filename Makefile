@@ -10,6 +10,12 @@ BIN_DIR = bin
 OBJ_DIR = obj
 SRC_DIR = src
 
+test_name = test
+test_path = bin/$(test_name)
+
+test_sources = $(shell find test/ -name '*.c')
+test_objects = $(test_sources:test/%.cpp=obj/test/%.o)
+
 APP_PATH = $(BIN_DIR)/$(APP_NAME)
 LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
 
@@ -42,3 +48,12 @@ clean:
 	$(RM) $(APP_PATH) $(LIB_PATH)
 	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
 	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
+
+.PHONY: test
+test: $(test_path)
+
+$(test_path): $(test_objects) $(LIB_PATH)
+	gcc -Wall -Wextra -Werror -I src -MP -MMD -I thirdparty /mnt/d/git_project/chessviz-Ioshito/test/main.c /mnt/d/git_project/chessviz-Ioshito/test/mytests.c -o bin/test
+
+test_run:
+	./bin/test
