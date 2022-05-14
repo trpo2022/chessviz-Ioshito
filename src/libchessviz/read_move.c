@@ -1,6 +1,7 @@
 #include "read_move.h"
 #include <libchessviz/print.h>
 char turn[5];
+int flag = 0;
 
 void yf_cord_check(int* yf)
 {
@@ -84,61 +85,53 @@ int move_true_check(char board[9][9], int color)
         print_err();
         return 0;
     }
-    if (((board[xs][ys] == 'P' || board[xs][ys] == 'p') && abs(xf - xs) == 1
-         && ys == yf)
-        || ((board[xs][ys] == 'P' || board[xs][ys] == 'p')
-            && (board[xf][yf] == 'P' || board[xf][yf] == 'p')
-            && abs(xf - xs) == 1 && abs(ys - yf) == 1))
-        move(board, xs, xf, ys, yf);
-    else {
-        print_err();
-        print(board);
-        return 0;
-    }
+    flag = move(board, xs, xf, ys, yf);
     print(board);
-    return 1;
+    return flag;
 }
 void print_err()
 {
     printf("Wrong coordinates, try again.\n");
 }
-void move(char board[9][9], int xs, int xf, int ys, int yf)
+int move(char board[9][9], int xs, int xf, int ys, int yf)
 {
-    board[xf][yf] = board[xs][ys];
-    board[xs][ys] = ' ';
-}
-void read_move(char board[9][9], int finish, int turnsc)
-{
-    if (board[1][1] == 0) {
+    if (board[xs][ys] == ' ')
+        return 1;
+    else{
+        board[xf][yf] = board[xs][ys];
+        board[xs][ys] = ' ';
+        return 0;
     }
-    while (finish != 1) {
-        if (turnsc == 0)
-            printf("Turn White\n");
-        else
-            printf("Turn Black\n");
-        scanf("%s", turn);
+}
+int read_move(char board[9][9], int turnsc, char turn2[])
+{
+        for (int i = 0; i < 5; i++) {
+            turn[i]=turn2[i];
+        }
         if ((turn[0] >= 97 && turn[0] <= 104)) {
             if ((turn[3] >= 97 && turn[3] <= 104)) {
                 if ((turn[1] >= 49 && turn[1] <= 56)) {
                     if ((turn[4] >= 49 && turn[4] <= 56)) {
-                        if (turnsc == 1) {
-                            if (move_true_check(board, turnsc) == 1)
-                                turnsc = 0;
-                        } else {
-                            if (move_true_check(board, turnsc) == 1)
-                                turnsc = 1;
-                        }
+                            flag = move_true_check(board, turnsc);
+                            return flag;
                     } else {
-                        void print_err();
+                        print_err();
+                        print(board);
+                        return 1;
                     }
                 } else {
-                    void print_err();
+                     print_err();
+                     print(board);
+                     return 1;
                 }
             } else {
-                void print_err();
+                 print_err();
+                 print(board);
+                 return 1;
             }
         } else {
-            void print_err();
+             print_err();
+             print(board);
+             return 1;
         }
     }
-}

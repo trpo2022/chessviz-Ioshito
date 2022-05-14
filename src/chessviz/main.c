@@ -1,5 +1,6 @@
 #include "libchessviz/print.h"
 #include "libchessviz/read_move.h"
+char turn[5];
 
 int main()
 {
@@ -17,5 +18,16 @@ int main()
                {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}};
     printf("Input format: char int char char inr like e2-e4. \n");
     print(board);
-    read_move(board, finish, turnsc);
+    while(finish != 1){
+         if (turnsc == 0)
+            printf("Turn White\n");
+        else
+            printf("Turn Black\n");
+        scanf("%s", turn);
+        read_move(board, turnsc, turn);
+        if (turnsc == 0)
+            turnsc = 1;
+        else
+            turnsc = 0;
+    }
 }
