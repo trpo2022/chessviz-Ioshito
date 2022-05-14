@@ -18,7 +18,7 @@ int main()
                {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}};
     printf("Input format: char int char char inr like e2-e4. \n");
     print(board);
-    while(finish != 1){
+    while (finish != 1) {
          if (turnsc == 0)
             printf("Turn White\n");
         else
