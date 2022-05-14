@@ -19,7 +19,7 @@ int main()
     printf("Input format: char int char char inr like e2-e4. \n");
     print(board);
     while (finish != 1) {
-         if (turnsc == 0)
+        if (turnsc == 0)
             printf("Turn White\n");
         else
             printf("Turn Black\n");

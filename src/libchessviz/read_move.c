@@ -106,32 +106,32 @@ int move(char board[9][9], int xs, int xf, int ys, int yf)
 int read_move(char board[9][9], int turnsc, char turn2[])
 {
     for (int i = 0; i < 5; i++) {
-        turn[i]=turn2[i];
+        turn[i] = turn2[i];
     }
     if ((turn[0] >= 97 && turn[0] <= 104)) {
         if ((turn[3] >= 97 && turn[3] <= 104)) {
             if ((turn[1] >= 49 && turn[1] <= 56)) {
                 if ((turn[4] >= 49 && turn[4] <= 56)) {
-                        flag = move_true_check(board, turnsc);
-                        return flag;
+                    flag = move_true_check(board, turnsc);
+                    return flag;
                 } else {
                     print_err();
                     print(board);
                     return 1;
                 }
             } else {
-                 print_err();
-                 print(board);
-                 return 1;
+                print_err();
+                print(board);
+                return 1;
             }
         } else {
-             print_err();
-             print(board);
-             return 1;
+            print_err();
+            print(board);
+            return 1;
         }
     } else {
-         print_err();
-         print(board);
-         return 1;
+        print_err();
+        print(board);
+        return 1;
     }
 }
