@@ -53,7 +53,7 @@ clean:
 test: $(test_path)
 
 $(test_path): $(test_objects) $(LIB_PATH)
-	gcc -Wall -Wextra -Werror -I src -MP -MMD -I thirdparty /mnt/d/git_project/chessviz-Ioshito/src/libchessviz/read_move.c /mnt/d/git_project/chessviz-Ioshito/src/libchessviz/print.c /mnt/d/git_project/chessviz-Ioshito/test/main.c /mnt/d/git_project/chessviz-Ioshito/test/mytests.c -o bin/test
+	gcc -Wall -Wextra -Werror -I src -MP -MMD -I thirdparty src/libchessviz/read_move.c src/libchessviz/print.c test/main.c test/mytests.c -o bin/test
 
 test_run:
 	./bin/test
